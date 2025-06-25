@@ -62,3 +62,59 @@ section.languages > span{
   border-radius: 3px;
   padding: 4.5px;
 }
+
+section.word{
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin-block: 36px;
+}
+
+section.word > span{
+  background-color: #323232;
+  color: #F9F4DA;
+  font-size: 18px;
+  font-weight: 700;
+  width: 40px;
+  height: 40px;
+  border-bottom: 1px solid #F9F4DA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section.alphabet{
+  display: flex;
+  gap:8px;
+  max-width: 480px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+section.alphabet > button{
+  width: 40px;
+  height: 40px;
+  background-color: #FCBA29;
+  color: #1E1E1E;
+  border: 1px solid #D7D7D7;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button.new-game{
+  height: 40px;
+  width: 230px;
+  background-color: #11B5E5;
+  border: 1px solid #D7D7D7;
+  border-radius: 4px;
+  margin-top: 36px;
+  display: block;
+  margin-inline: auto;
+  cursor: pointer;
+}
