@@ -2,8 +2,17 @@ import { useState } from 'react'
 import { languages } from './languages'
 export default function App() {
   const [currentWord, setCurrentWord] = useState("react") 
+  const [guessedWord, setGuessedWord] = useState([])
+  console.log(guessedWord)
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
+
+  function addGuessedWord(word){
+    setGuessedWord(prevGuessedWord => 
+      prevGuessedWord.includes(word) ? prevGuessedWord : [...prevGuessedWord,word]
+    )
+    
+  }
 
   const languageElements = languages.map(language => (
       <span 
@@ -24,10 +33,12 @@ export default function App() {
 
   const alphabetElements = alphabet.toUpperCase().split("").map(letter =>
   (
-    <button key={letter}>
+    <button key={letter} onClick={() => addGuessedWord(letter)}>
       {letter}
     </button>
   ))
+
+  
   return (
     <main>
       <header>
