@@ -107,6 +107,14 @@ section.alphabet > button{
   cursor: pointer;
 }
 
+section.alphabet > button.guessed-correct{
+  background-color: #10A95B;
+}
+
+section.alphabet > button.guessed-wrong{
+  background-color: #EC5D49;
+}
+
 button.new-game{
   height: 40px;
   width: 230px;
