@@ -4,7 +4,11 @@ import clsx from "clsx"
 export default function App() {
   const [currentWord, setCurrentWord] = useState("react") 
   const [guessedWord, setGuessedWord] = useState([])
-  console.log(guessedWord)
+  
+  const wrongGuessCount = guessedWord.reduce((acc,curr) => {
+    return currentWord.includes(curr) ? acc : acc+1;
+  },0)
+  console.log(wrongGuessCount)
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
