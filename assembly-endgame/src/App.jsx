@@ -19,12 +19,13 @@ export default function App() {
     
   }
 
-  const languageElements = languages.map(language => (
+  const languageElements = languages.map((language,index) => (
       <span 
         style={{backgroundColor: language.backgroundColor,
           color: language.color
         }}
-        key={language.name}>
+        key={language.name}
+        className={index<wrongGuessCount ? "chip lost" : "chip"}>
         {language.name}
       </span>
     ))
