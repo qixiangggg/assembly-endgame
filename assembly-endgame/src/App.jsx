@@ -8,7 +8,10 @@ export default function App() {
   const wrongGuessCount = guessedWord.reduce((acc,curr) => {
     return currentWord.includes(curr) ? acc : acc+1;
   },0)
-  console.log(wrongGuessCount)
+
+  const isGameLost = wrongGuessCount >= languages.length - 1
+  const isGameWon = currentWord.split("").every(word => guessedWord.includes(word))
+  const isGameOver = (isGameLost || isGameWon)
 
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
@@ -73,9 +76,9 @@ export default function App() {
       <section className='alphabet'>
         {alphabetElements}
       </section>
-      <button className='new-game'>
+      {isGameOver && <button className='new-game'>
         New Game
-      </button>
+      </button>}
     </main>
   )
 }
