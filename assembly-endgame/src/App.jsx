@@ -28,7 +28,7 @@ export default function App() {
           color: language.color
         }}
         key={language.name}
-        className={index<wrongGuessCount ? "chip lost" : "chip"}>
+        className={index<wrongGuessCount ? "lost" : ""}>
         {language.name}
       </span>
     ))
@@ -56,6 +56,27 @@ export default function App() {
     </button>
   ))
 
+  function showGameStatus(){
+    return(
+      <section className={
+        clsx(
+          "game-status",
+          {
+            "game-win": isGameWon,
+            "game-lost": isGameLost
+          }
+        )
+      }>
+        <h2>{
+        isGameWon ? "You win!" : isGameLost ? "Game over!" :""
+        }</h2>
+        <p>{
+          isGameWon ? "Well done!🎉" : isGameLost ? "You lose! Better start learning Assembly 😭": ""
+          }</p>
+      </section>
+    )
+  }
+
   
   return (
     <main>
@@ -63,10 +84,7 @@ export default function App() {
         <h1 className='title'>Assembly: Endgame</h1>
         <p className='description'>Guess the word in under 8 attempts to keep the programming world safe from Assembly!</p>
       </header>
-      <section className='game-status'>
-        <h2>You win!</h2>
-        <p>Well done!🎉</p>
-      </section>
+      {showGameStatus()}
       <section className="languages">
         {languageElements}
       </section>
