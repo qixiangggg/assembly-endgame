@@ -9,8 +9,12 @@ body{
   color: #D9D9D9;
   padding: 20px;
   height: 100vh;
+}
+
+main{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 header{
@@ -36,6 +40,8 @@ section.game-status{
   border-radius: 4px;
   color: #F9F4DA;
   margin-block: 30px;
+  width: 100%;
+  max-width: 350px;
 }
 
 section.game-status.game-win{
@@ -62,7 +68,6 @@ section.languages{
  flex-wrap: wrap;
  max-width: 350px;
  justify-content: center;
- margin: 0 auto;
 }
 
 
@@ -113,7 +118,6 @@ section.alphabet{
   max-width: 480px;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 0 auto;
 }
 
 section.alphabet > button{
@@ -147,6 +151,5 @@ button.new-game{
   border-radius: 4px;
   margin-top: 36px;
   display: block;
-  margin-inline: auto;
   cursor: pointer;
 }
