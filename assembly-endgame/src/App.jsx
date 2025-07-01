@@ -54,6 +54,7 @@ export default function App() {
     <button 
       key={letter} 
       onClick={() => addGuessedWord(letter.toLowerCase())}
+      disabled={isGameOver}
       className={clsx(
         {
           "guessed-correct": guessedWord.includes(letter) && currentWord.includes(letter),
