@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { languages } from './languages'
 import { getWord,getFarewellText } from './utils'
 import clsx from "clsx"
+import Confetti from 'react-confetti'
 export default function App() {
   //State value
   const [currentWord, setCurrentWord] = useState(() => getWord()) 
@@ -146,6 +147,7 @@ export default function App() {
       {isGameOver && <button className='new-game' onClick={newGame}>
         New Game
       </button>}
+      {isGameWon && <Confetti recycle={false} numberOfPieces={1000}/>}
     </main>
   )
 }
