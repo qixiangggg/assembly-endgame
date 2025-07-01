@@ -121,6 +121,10 @@ section.word > span{
   justify-content: center;
 }
 
+section.word > span.missed-letter{
+  color:#EC5D49;
+}
+
 section.alphabet{
   display: flex;
   gap:8px;

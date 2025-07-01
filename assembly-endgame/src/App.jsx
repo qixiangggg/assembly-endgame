@@ -44,8 +44,11 @@ export default function App() {
   const currentWordElements = currentWord.split("").map((letter,index) =>
     {
       const isGuessed = guessedWord.includes(letter)
-      return (<span key={index}>
-        {isGuessed && letter.toUpperCase()}
+      return (
+      <span key={index} className={clsx(
+        isGameLost && !guessedWord.includes(letter) && "missed-letter"
+      )}>
+        {(isGuessed || isGameLost) && letter.toUpperCase()}
       </span>)
     }
   )
