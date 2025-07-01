@@ -55,6 +55,8 @@ export default function App() {
       key={letter} 
       onClick={() => addGuessedWord(letter.toLowerCase())}
       disabled={isGameOver}
+      aria-disabled={guessedWord.includes(letter)}
+      aria-label={`Letter ${letter}`}
       className={clsx(
         {
           "guessed-correct": guessedWord.includes(letter) && currentWord.includes(letter),
@@ -103,7 +105,7 @@ export default function App() {
         <h1 className='title'>Assembly: Endgame</h1>
         <p className='description'>Guess the word in under 8 attempts to keep the programming world safe from Assembly!</p>
       </header>
-      <section className={gameStatusClass}>
+      <section aria-live="polite" role="status" className={gameStatusClass}>
         {showGameStatus()}
       </section>
       <section className="languages">
@@ -111,6 +113,14 @@ export default function App() {
       </section>
       <section className='word'>
         {currentWordElements}
+      </section>
+      <section 
+        className='sr-only'
+        aria-live='polite'
+        role='status'
+      >
+        <p>Current Word: {currentWord.split("").map(letter => 
+          guessedWord.includes(letter) ? letter + "." :"blank.").join(" ")}</p>
       </section>
       <section className='alphabet'>
         {alphabetElements}
