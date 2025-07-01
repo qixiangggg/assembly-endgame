@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { languages } from './languages'
-import { getFarewellText } from './utils'
+import { getWord,getFarewellText } from './utils'
 import clsx from "clsx"
 export default function App() {
   //State value
-  const [currentWord, setCurrentWord] = useState("react") 
+  const [currentWord, setCurrentWord] = useState(() => getWord()) 
   const [guessedWord, setGuessedWord] = useState([])
   
   //Derived values
@@ -20,7 +20,7 @@ export default function App() {
   const hasGuessedWrongly = wrongGuessCount > 0 
   const fareWellMessage = isLastGuessedWrong && hasGuessedWrongly ? getFarewellText(languages[wrongGuessCount - 1].name) : ""
   const numGuessLeft = languages.length - 1 - wrongGuessCount
-  
+
   //Static values
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
