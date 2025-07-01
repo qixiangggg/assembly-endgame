@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import { languages } from './languages'
+import { getFarewellText } from './utils'
 import clsx from "clsx"
 export default function App() {
+  //State value
   const [currentWord, setCurrentWord] = useState("react") 
   const [guessedWord, setGuessedWord] = useState([])
   
+  //Derived values
   const wrongGuessCount = guessedWord.reduce((acc,curr) => {
     return currentWord.includes(curr) ? acc : acc+1;
   },0)
@@ -12,7 +15,12 @@ export default function App() {
   const isGameLost = wrongGuessCount >= languages.length - 1
   const isGameWon = currentWord.split("").every(word => guessedWord.includes(word))
   const isGameOver = (isGameLost || isGameWon)
+  const lastGuessedWord = guessedWord[guessedWord.length-1]
+  const isLastGuessedWrong = !currentWord.includes(lastGuessedWord)
+  const hasGuessedWrongly = wrongGuessCount > 0 
+  const fareWellMessage = isLastGuessedWrong && hasGuessedWrongly ? getFarewellText(languages[wrongGuessCount - 1].name) : ""
 
+  //Static values
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
   function addGuessedWord(word){
@@ -60,13 +68,14 @@ export default function App() {
           "game-status",
           {
             "game-win": isGameWon,
-            "game-status game-lost": isGameLost
+            "game-lost": isGameLost,
+            "last-guessed-wrong": fareWellMessage !== ""
           }
         )
 
   function showGameStatus(){
     if (!isGameOver){
-      return null
+      return (<p>{fareWellMessage}</p>)
     }
     else if (isGameWon){
       return(
