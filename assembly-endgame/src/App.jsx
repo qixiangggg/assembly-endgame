@@ -19,7 +19,8 @@ export default function App() {
   const isLastGuessedWrong = !currentWord.includes(lastGuessedWord)
   const hasGuessedWrongly = wrongGuessCount > 0 
   const fareWellMessage = isLastGuessedWrong && hasGuessedWrongly ? getFarewellText(languages[wrongGuessCount - 1].name) : ""
-
+  const numGuessLeft = languages.length - 1 - wrongGuessCount
+  
   //Static values
   const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
@@ -114,14 +115,23 @@ export default function App() {
       <section className='word'>
         {currentWordElements}
       </section>
+      {/* Combined visually-hidden aria-live region for status updates  */}
       <section 
         className='sr-only'
         aria-live='polite'
         role='status'
       >
+        <p>
+          {isLastGuessedWrong ? 
+          `Sorry, the letter ${lastGuessedWord} is not in the word`:
+          `Correct! the letter ${lastGuessedWord} is in the word`}
+          You have {numGuessLeft} attempts left.
+        </p>
         <p>Current Word: {currentWord.split("").map(letter => 
-          guessedWord.includes(letter) ? letter + "." :"blank.").join(" ")}</p>
+          guessedWord.includes(letter) ? letter + "." :"blank.").join(" ")}
+        </p>
       </section>
+
       <section className='alphabet'>
         {alphabetElements}
       </section>
