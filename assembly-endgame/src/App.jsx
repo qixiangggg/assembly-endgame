@@ -56,25 +56,34 @@ export default function App() {
     </button>
   ))
 
-  function showGameStatus(){
-    return(
-      <section className={
-        clsx(
+  const gameStatusClass = clsx(
           "game-status",
           {
             "game-win": isGameWon,
-            "game-lost": isGameLost
+            "game-status game-lost": isGameLost
           }
         )
-      }>
-        <h2>{
-        isGameWon ? "You win!" : isGameLost ? "Game over!" :""
-        }</h2>
-        <p>{
-          isGameWon ? "Well done!🎉" : isGameLost ? "You lose! Better start learning Assembly 😭": ""
-          }</p>
-      </section>
-    )
+
+  function showGameStatus(){
+    if (!isGameOver){
+      return null
+    }
+    else if (isGameWon){
+      return(
+        <>
+          <h2>You win!</h2>
+          <p>Well done! 🎉</p>
+        </>
+      )
+    }
+    else{
+      return(
+        <>
+          <h2>Game over!</h2>
+          <p>You lose! Better start learning Assembly 😭</p>
+        </>
+      )
+    }
   }
 
   
@@ -84,7 +93,9 @@ export default function App() {
         <h1 className='title'>Assembly: Endgame</h1>
         <p className='description'>Guess the word in under 8 attempts to keep the programming world safe from Assembly!</p>
       </header>
-      {showGameStatus()}
+      <section className={gameStatusClass}>
+        {showGameStatus()}
+      </section>
       <section className="languages">
         {languageElements}
       </section>
